@@ -38,6 +38,14 @@ class test {
         unset($arr[$minKey]);
         return array($minKey, $min);
     }
+
+    public function myAsort2($arr) {
+        $arrVal = array_values($arr);
+        $arrKey = array_keys($arr);
+        array_multisort($arrVal, $arrKey);
+        $r = array_combine($arrKey, $arrVal);
+        var_dump($r);
+    }
 }
 $test = new test();
 $arr = array(
@@ -45,6 +53,6 @@ $arr = array(
     'bcd' => 102,
     'abb' => 101,
 );
-$test->myAsort($arr);
+$test->myAsort2($arr);
 //脚本正常退出
 exit(0);
