@@ -6,11 +6,9 @@
  * Time: 下午9:11
  */
 
-class test {
+class myArray {
     public function test1($arr) {
-        var_dump($arr);
         ksort($arr);
-        var_dump($arr);
     }
     public function myAsort($arr) {
         $result = array();
@@ -20,7 +18,6 @@ class test {
             list($minKey, $min) = $this->getMinItem($arr);
             $result[$minKey] = $min;
         }
-        var_dump($result);
         return $result;
     }
     private function getMinItem(&$arr) {
@@ -44,10 +41,14 @@ class test {
         $arrKey = array_keys($arr);
         array_multisort($arrVal, $arrKey);
         $r = array_combine($arrKey, $arrVal);
-        var_dump($r);
+        return $r;
+    }
+
+    public function LRUArray($arr) {
+
     }
 }
-$test = new test();
+$test = new myArray();
 $arr = array(
     'abc' => 101,
     'bcd' => 102,
