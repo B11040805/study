@@ -23,9 +23,22 @@ class TreeNode {
 
 
 class myTree {
-
     public function BFS(TreeNode $root) {
-
+        if (empty($root->root)) {
+            return;
+        }
+        // 使用队列，
+        $queueArr[] = $root;
+        while(!empty($queueArr)) {
+            $tempNode = array_pop($queueArr);
+            print $tempNode->root;
+            if (!empty($tempNode->leftNode)) {
+                array_unshift($queueArr, $tempNode->leftNode);
+            }
+            if (!empty($tempNode->rigthNode)) {
+                array_unshift($queueArr, $tempNode->rigthNode);
+            }
+        }
     }
 
     public function preOrder(TreeNode $root) {
@@ -83,7 +96,7 @@ $root = new TreeNode("a",$node2, $node3);
 
 
 $test->preOrder($root);
-
+$test->BFS($root);
 
 //脚本正常退出
 exit(0);
