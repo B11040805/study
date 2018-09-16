@@ -17,9 +17,23 @@ class myFile{
         $files = array();
         if (is_file($dir)) {
             $files[] = $dir;
-            return;
+            return $files;
+        }
+        if (is_dir($dir)) {
+            $res = opendir($dir);
+            while($row = readdir($res)) {
+                if ($row == '.' || $row == '..') {
+                    continue;
+                }
+                if (is_file($dir.'/'.$row)){
+                    $files[] = $row;
+                } else if (is_dir($dir.'/'.$row)) {
+                    $files[$row] = $this->getAllFile($dir.'/'.$row);
+                }
+            }
         }
 
+        return $files;
 
 
     }
